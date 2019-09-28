@@ -1,43 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using analizator.WorkSpace;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace analizator.Helpers
 {
     public class CountHelper
     {
-        private string content {get; set;}
+        private string content;
 
-        public CountHelper(string Content)
+        public CountHelper()
         {
-            content = Content;
+            content = WorkSpaceItemCollection.WebsiteContent;
+            CountLetters();
+            CountWords();
+            CountPunctuationMarks();
+            CountSentences();
         }
 
-        public void CountLetters()
+        #region Count Methods
+        private void CountLetters()
         {
             //Student A
+            // WorkSpaceItemCollection.CountLetters
         }
 
-        public void CountWords()
+        private void CountWords()
         {
-
-            int output = content.Count(char.IsWhiteSpace) + 1;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{Environment.NewLine}This story has {output} words!");
-            Console.ForegroundColor = ConsoleColor.White;
-
+            WorkSpaceItemCollection.CountWords = content.Count(char.IsWhiteSpace) + 1;
+            /* This can be copy to main
+             * Console.ForegroundColor = ConsoleColor.Green;
+               Console.WriteLine($"{Environment.NewLine}This story has {WorkSpaceItemCollection.CountWords} words!");
+               Console.ForegroundColor = ConsoleColor.White;
+            */
         }
 
-        public void CountPunctuationMarks()
+        private void CountPunctuationMarks()
         {
+           
             //Student C
+            // WorkSpaceItemCollection.CountPunctuationMarks
         }
 
-        public void CountSentences()
+        private void CountSentences()
         {
             // Student C
+            //WorkSpaceItemCollection.CountSentences
         }
+        #endregion
     }
 }

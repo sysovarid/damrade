@@ -1,39 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using analizator.WorkSpace;
+using System;
 using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace analizator.Helpers
 {
+    /*
+     *  To download content from website we need only to create constructor!
+     *   How easy it is!
+     */
     public class WebHelper
     {
-        private string ConnectionPath { get; set; }
+        private string connectionPath { get; set; }
 
-        private string Content { get; set; }
-
-        private WebClient Client { get; set; }
+        private WebClient client { get; set; }
 
         public WebHelper()
         {
-            ConnectionPath = ConfigurationManager.AppSettings["address"];
-            Client = new WebClient();
+            connectionPath = ConfigurationManager.AppSettings["address"];
+            client = new WebClient();
+            GetAllContentToList();
         }
 
-        public string GetAllContentToList()
+        private void GetAllContentToList()
         {
             try
             {
-
-               Content = Client.DownloadString(ConnectionPath);
-               return Content;
-
+               WorkSpaceItemCollection.WebsiteContent = Client.DownloadString(ConnectionPath);
             }
+
             catch (WebException e)
             {
-                return $"Somethink went wrong! Message: {e.Message}";
+                throw new  Exception ($"Somethink went wrong! Message: {e.Message}");
             }
 
         }

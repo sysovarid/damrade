@@ -10,6 +10,11 @@ namespace analizator
     {
         static void Main(string[] args)
         {
+            /* Before loop we should create:
+             * 1. WebHelper webHelper = new WebHelper();
+             * 2. CountHelper countHelper = new CountHelper();
+             * 3. RaportHelper raportHelper = new RaportHelper();
+             */
         }
     }
 }
