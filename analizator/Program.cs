@@ -12,9 +12,9 @@ namespace analizator
     {
         static void Main(string[] args)
         {
-            WebHelper wh = new WebHelper();
-            CountHelper ch = new CountHelper();
-            RaportHelper rh = new RaportHelper();
+            WebHelper webHelper = new WebHelper();
+            CountHelper countHelper = new CountHelper();
+            RaportHelper raportHelper = new RaportHelper();
 
             while (true)
             {
@@ -26,66 +26,97 @@ namespace analizator
                 Console.WriteLine("6. Wygeneruj raport o użyciu liter");
                 Console.WriteLine("7. Zapisz statystyki z punktów 2-5 do pliku statystyki.txt");
                 Console.WriteLine("8. Wyjście z programu");
-                int menuOption = Convert.ToInt32(Console.ReadLine());
 
-                if (menuOption == 1)
+                string menuOption = Console.ReadLine();
+
+                switch (menuOption)
                 {
-                    if (WorkSpaceItemCollection.WebsiteContent != null)
-                    {
-                        Console.WriteLine("Połączono");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Błąd w połączeniu");
-                    }
-                    continue;   
-                }
-                if (menuOption == 2)
-                {
-                    Console.Clear();
-                    ch.CountLetters();
-                    Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters} {Environment.NewLine}");
-                    continue;                              
-                }
-                if (menuOption == 3)
-                {
-                    Console.Clear();
-                    ch.CountWords();
-                    Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}{Environment.NewLine}");
-                    continue;
-                }
-                if (menuOption == 4) 
-                {
-                    Console.Clear();
-                    ch.CountPunctuationMarks();
-                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}{Environment.NewLine}");
-                    continue;
-                }
-                if (menuOption == 5) 
-                {
-                    Console.Clear();
-                    ch.CountSentences();
-                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}{Environment.NewLine}");
-                    continue;
-                }
-                if (menuOption == 6)
-                {
-                    
-                    rh.GenerateReport();
-                    continue;
-                }
-                if (menuOption == 7)
-                {
-                    
-                    rh.SaveStatistics();
-                    continue;
-                }
-                if (menuOption == 8)
-                {
-                    rh.DeleteStatistics();
-                    break;
-                }
-                
+                    case "1":
+                        {
+                            Console.Clear();
+
+                            if (WorkSpaceItemCollection.WebsiteContent != null)
+                            {
+                                Console.WriteLine("Pobrano");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Błąd w połączeniu");
+                            }
+
+                            break;
+                        }
+
+                    case "2":
+                        {
+                            Console.Clear();
+                            countHelper.CountLetters();
+                            Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters} {Environment.NewLine}");
+
+                            break;
+                        }
+
+                    case "3":
+                        {
+                            Console.Clear();
+                            countHelper.CountWords();
+                            Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}{Environment.NewLine}");
+
+                            break;
+                        }
+
+                    case "4":
+                        {
+                            Console.Clear();
+                            countHelper.CountPunctuationMarks();
+                            Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}{Environment.NewLine}");
+
+                            break;
+                        }
+
+                    case "5":
+                        {
+                            Console.Clear();
+                            countHelper.CountSentences();
+                            Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}{Environment.NewLine}");
+
+                            break;
+                        }
+
+                    case "6":
+                        {
+                            Console.Clear();
+                            raportHelper.GenerateReport();
+
+                            foreach (var item in WorkSpaceItemCollection.Chars.OrderBy(x => x.Key))
+                            {
+                                Console.WriteLine($"{item.Key} : {item.Value}");
+                            }
+
+                            break;
+                        }
+
+                    case "7":
+                        {
+                            raportHelper.SaveStatistics();
+
+                            break;
+                        }
+
+                    case "8":
+                        {
+                            raportHelper.DeleteStatistics();
+
+                            break;
+                        }
+
+
+                    default:
+                        {
+                            Console.WriteLine("Nie ma takiej opcji");
+                            break;
+                        }
+                }                
             }
         }
     }

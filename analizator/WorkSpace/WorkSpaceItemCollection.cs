@@ -1,4 +1,6 @@
-﻿namespace analizator.WorkSpace
+﻿using System.Collections.Generic;
+
+namespace analizator.WorkSpace
 {
     public static class WorkSpaceItemCollection
     {
@@ -12,6 +14,8 @@
         public static int CountPunctuationMarks { get; set; }
 
         public static int CountSentences { get; set; }
+
+        public static Dictionary<char, int> Chars { get; set; } = new Dictionary<char, int>();
         #endregion
     }
 }
