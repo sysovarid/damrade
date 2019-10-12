@@ -11,7 +11,7 @@ namespace analizator.Helpers
         public CountHelper()
         {
             content = WorkSpaceItemCollection.WebsiteContent;
-            
+
         }
 
         #region Count Methods
@@ -32,14 +32,13 @@ namespace analizator.Helpers
             //Student C
 
             int count = 0;
-            foreach (char c in content) { 
-            if (c == '.' || c == ',' || c == ';' || c == ':' || c == '?'
-                || c == '!' || c == '(' || c == ')'
-                || c == '"' || c == '-')
+            foreach (char c in content)
             {
-                count++;
+                if (c == '.' || c == '?')
+                {
+                    count++;
+                }
             }
-        }
 
 
             //Console.WriteLine("Number of punctuation marks: " + count);
