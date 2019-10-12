@@ -14,13 +14,14 @@ namespace analizator.Helpers
     {
         public string connectionPath { get; set; }
 
-        public WebClient client { get; set; }
+        public bool IsValidPath { get; set; }
+
+        private WebClient client { get; set; }
 
         public WebHelper()
         {
             connectionPath = "https://s3.zylowski.net/public/input/6.txt";
-            client = new WebClient();
-       
+            client = new WebClient();     
         }
         
         public void GetAllContentToList()
@@ -28,11 +29,13 @@ namespace analizator.Helpers
             try
             {
                WorkSpaceItemCollection.WebsiteContent = client.DownloadString(connectionPath).ToUpper();
+               IsValidPath = true;
             }
 
             catch (WebException e)
             {
-                throw new  Exception ($"Something went wrong! Message: {e.Message}");
+                Console.WriteLine($"Taka ścieżka nie istnieje {connectionPath}");
+                IsValidPath = false;
             }
 
         }
@@ -40,18 +43,16 @@ namespace analizator.Helpers
         {
             try
             {
-                // Create an instance of StreamReader to read from a file.
-                // The using statement also closes the StreamReader.
-                using (StreamReader sr = new StreamReader($"{Directory.GetCurrentDirectory()}//{connectionPath}"))
+                using (StreamReader sr = new StreamReader($"{Directory.GetCurrentDirectory()}//{connectionPath}.txt"))
                 {
-                    WorkSpaceItemCollection.WebsiteContent = sr.ReadToEnd();                    
+                    WorkSpaceItemCollection.WebsiteContent = sr.ReadToEnd();
+                    IsValidPath = true;
                 }
             }
             catch (Exception e)
             {
-                // Let the user know what went wrong.
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Taka ścieżka pliku nie istnieje {connectionPath}:");
+                IsValidPath = false;
             }
         }
     }
