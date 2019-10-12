@@ -11,30 +11,22 @@ namespace analizator.Helpers
         public CountHelper()
         {
             content = WorkSpaceItemCollection.WebsiteContent;
-            CountLetters();
-            CountWords();
-            CountPunctuationMarks();
-            CountSentences();
+            
         }
 
         #region Count Methods
-        private void CountLetters()
+        public void CountLetters()
         {
             //Student A
             // WorkSpaceItemCollection.CountLetters
         }
 
-        private void CountWords()
+        public void CountWords()
         {
             WorkSpaceItemCollection.CountWords = content.Count(char.IsWhiteSpace) + 1;
-            /* This can be copy to main
-             * Console.ForegroundColor = ConsoleColor.Green;
-               Console.WriteLine($"{Environment.NewLine}This story has {WorkSpaceItemCollection.CountWords} words!");
-               Console.ForegroundColor = ConsoleColor.White;
-            */
         }
 
-        private void CountPunctuationMarks()
+        public void CountPunctuationMarks()
         {
 
             //Student C
@@ -49,20 +41,21 @@ namespace analizator.Helpers
             }
         }
 
-            Console.WriteLine("Number of punctuation marks: " + count);
-               
-            // WorkSpaceItemCollection.CountPunctuationMarks
+
+            //Console.WriteLine("Number of punctuation marks: " + count);
+
+            WorkSpaceItemCollection.CountPunctuationMarks = count;
         }
 
-        private void CountSentences()
+        public void CountSentences()
         {
             // Student C
 
             string[] sentences = content.Split('.');
 
-            Console.WriteLine("Number of sentences: " + sentences.Length);
+            //Console.WriteLine("Number of sentences: " + sentences.Length);
 
-            //WorkSpaceItemCollection.CountSentences
+            WorkSpaceItemCollection.CountSentences = sentences.Length;
         }
         #endregion
     }

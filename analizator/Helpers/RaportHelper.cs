@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using analizator.WorkSpace;
+using System;
+using System.IO;
 
 namespace analizator.Helpers
 {
@@ -11,7 +9,6 @@ namespace analizator.Helpers
 
         public void GenerateReport()
         {
-            //Student A
         }
 
         public void SaveStatistics()
@@ -23,11 +20,14 @@ namespace analizator.Helpers
                 streamWriter.WriteLine($" Liczba znaków: {WorkSpaceItemCollection.CountPunctuationMarks}");
                 streamWriter.WriteLine($" Liczba zdań: {WorkSpaceItemCollection.CountSentences}");
             }
+        {         
         }
 
         public void DeleteStatistics()
         {
-            //Student B
+            string directory = Directory.GetCurrentDirectory();
+
+            File.Delete($"{directory}//statystyki.txt");
         }
     }
 }
