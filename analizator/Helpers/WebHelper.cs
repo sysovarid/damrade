@@ -1,6 +1,7 @@
 ﻿using analizator.WorkSpace;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Net;
 
 namespace analizator.Helpers
@@ -19,10 +20,10 @@ namespace analizator.Helpers
         {
             connectionPath = "https://s3.zylowski.net/public/input/6.txt";
             client = new WebClient();
-            GetAllContentToList();
+       
         }
         
-        private void GetAllContentToList()
+        public void GetAllContentToList()
         {
             try
             {
@@ -34,6 +35,24 @@ namespace analizator.Helpers
                 throw new  Exception ($"Something went wrong! Message: {e.Message}");
             }
 
+        }
+        public void GetAllContentFromLocal()
+        {
+            try
+            {
+                // Create an instance of StreamReader to read from a file.
+                // The using statement also closes the StreamReader.
+                using (StreamReader sr = new StreamReader($"{Directory.GetCurrentDirectory()}//{connectionPath}"))
+                {
+                    WorkSpaceItemCollection.WebsiteContent = sr.ReadToEnd();                    
+                }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace analizator
 
             while (true)
             {
-                Console.WriteLine("1. Pobierz plik z internetu");
+                Console.WriteLine("1. Wybierz plik wejściowy");
                 Console.WriteLine("2. Zlicz liczbę liter w pobranym pliku");
                 Console.WriteLine("3. Zlicz liczbę wyrazów w pliku");
                 Console.WriteLine("4. Zlicz liczbę znaków interpunkcyjnych w pliku");
@@ -34,14 +34,24 @@ namespace analizator
                     case "1":
                         {
                             Console.Clear();
-
-                            if (WorkSpaceItemCollection.WebsiteContent != null)
+                            Console.WriteLine("Czy pobrać plik z internetu?[T/N]");
+                            string result = Console.ReadLine();
+                            if (result.Equals("T", StringComparison.OrdinalIgnoreCase) || result.Equals("t", StringComparison.OrdinalIgnoreCase))
                             {
-                                Console.WriteLine("Pobrano");
+                                webHelper.connectionPath = Console.ReadLine();
+                                webHelper.GetAllContentToList();
+                            
+                            }
+                            else if (result.Equals("N", StringComparison.OrdinalIgnoreCase) || result.Equals("n", StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine("Podaj nazwę pliku.txt");
+                                webHelper.connectionPath = Console.ReadLine();
+
+                                webHelper.GetAllContentFromLocal();
                             }
                             else
                             {
-                                Console.WriteLine("Błąd w połączeniu");
+                                Console.WriteLine("Brak wyboru");
                             }
 
                             break;
