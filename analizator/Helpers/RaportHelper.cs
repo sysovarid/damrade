@@ -12,6 +12,14 @@ namespace analizator.Helpers
         }
 
         public void SaveStatistics()
+        {
+            using (StreamWriter streamWriter = new StreamWriter("statystyki.txt"))
+            {
+                streamWriter.WriteLine($" Liczba liter: {WorkSpaceItemCollection.CountLetters}");
+                streamWriter.WriteLine($" Liczba wyrazów: {WorkSpaceItemCollection.CountWords}");
+                streamWriter.WriteLine($" Liczba znaków: {WorkSpaceItemCollection.CountPunctuationMarks}");
+                streamWriter.WriteLine($" Liczba zdań: {WorkSpaceItemCollection.CountSentences}");
+            }
         {         
         }
 
