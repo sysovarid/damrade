@@ -9,6 +9,17 @@ namespace analizator.Helpers
 
         public void GenerateReport()
         {
+            foreach (char ch in WorkSpaceItemCollection.WebsiteContent.ToUpper())
+            {
+                if (Char.IsLetter(ch))
+                {
+                    if (WorkSpaceItemCollection.Chars.ContainsKey(ch) == false)
+                    {
+                        WorkSpaceItemCollection.Chars.Add(ch, 0);
+                    }
+                    WorkSpaceItemCollection.Chars[ch] += 1;
+                }
+            }
         }
 
         public void SaveStatistics()
@@ -20,7 +31,7 @@ namespace analizator.Helpers
                 streamWriter.WriteLine($" Liczba znaków: {WorkSpaceItemCollection.CountPunctuationMarks}");
                 streamWriter.WriteLine($" Liczba zdań: {WorkSpaceItemCollection.CountSentences}");
             }
-        {         
+                 
         }
 
         public void DeleteStatistics()

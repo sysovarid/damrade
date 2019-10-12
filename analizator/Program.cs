@@ -107,7 +107,7 @@ namespace analizator
                         {
                             raportHelper.DeleteStatistics();
 
-                            break;
+                            return;
                         }
 
 
