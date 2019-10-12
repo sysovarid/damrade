@@ -16,6 +16,9 @@ namespace analizator.WorkSpace
         public static int CountSentences { get; set; }
 
         public static Dictionary<char, int> Chars { get; set; } = new Dictionary<char, int>();
+
+        public static Dictionary<char, int> volwes = new Dictionary<char, int>();
+        public static Dictionary<char, int> consonant = new Dictionary<char, int>();
         #endregion
     }
 }
