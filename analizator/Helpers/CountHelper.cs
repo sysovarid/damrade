@@ -23,7 +23,19 @@ namespace analizator.Helpers
 
         public void CountWords()
         {
-            WorkSpaceItemCollection.CountWords = content.Count(char.IsWhiteSpace) + 1;
+            string[] words = content.Split(' ');
+
+            int counter = 0;
+
+            foreach(string w in words)
+            {
+                if(w.Length > 1)
+                {
+                    counter++;
+                }
+            }
+
+            WorkSpaceItemCollection.CountWords = counter;
         }
 
         public void CountPunctuationMarks()
