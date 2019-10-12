@@ -14,6 +14,7 @@ namespace analizator
         {
             WebHelper wh = new WebHelper();
             CountHelper ch = new CountHelper();
+            RaportHelper rh = new RaportHelper();
 
             while (true)
             {
@@ -40,43 +41,50 @@ namespace analizator
                     continue;   
                 }
                 if (menuOption == 2)
-                {                 
+                {
+                    Console.Clear();
                     ch.CountLetters();
-                    Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters}");
+                    Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters} {Environment.NewLine}");
                     continue;                              
                 }
                 if (menuOption == 3)
-                {              
+                {
+                    Console.Clear();
                     ch.CountWords();
-                    Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}");
+                    Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}{Environment.NewLine}");
                     continue;
                 }
                 if (menuOption == 4) 
                 {
+                    Console.Clear();
                     ch.CountPunctuationMarks();
-                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}");
+                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}{Environment.NewLine}");
                     continue;
                 }
                 if (menuOption == 5) 
-                {               
+                {
+                    Console.Clear();
                     ch.CountSentences();
-                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}");
+                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}{Environment.NewLine}");
                     continue;
                 }
                 if (menuOption == 6)
                 {
-                    RaportHelper rh = new RaportHelper();
+                    
                     rh.GenerateReport();
                     continue;
                 }
                 if (menuOption == 7)
                 {
-                    RaportHelper rh = new RaportHelper();
+                    
                     rh.SaveStatistics();
                     continue;
                 }
                 if (menuOption == 8)
+                {
+                    rh.DeleteStatistics();
                     break;
+                }
                 
             }
         }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using analizator.WorkSpace;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +17,14 @@ namespace analizator.Helpers
         }
 
         public void SaveStatistics()
-        {
-            //Student C
+        {         
         }
 
         public void DeleteStatistics()
         {
-            //Student B
+            string directory = Directory.GetCurrentDirectory();
+
+            File.Delete($"{directory}//statystyki.txt");
         }
     }
 }
