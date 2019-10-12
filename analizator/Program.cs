@@ -1,4 +1,5 @@
-﻿using System;
+﻿using analizator.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,55 @@ namespace analizator
                 Console.WriteLine("7. Zapisz statystyki z punktów 2-5 do pliku statystyki.txt");
                 Console.WriteLine("8. Wyjście z programu");
                 int menuOption = Convert.ToInt32(Console.ReadLine());
-                if (menuOption == 1) ;
-                if (menuOption == 2) ;
-                if (menuOption == 3) ;
-                if (menuOption == 4) ;
-                if (menuOption == 5) ;
-                if (menuOption == 6) ;
-                if (menuOption == 7) ;
-                if (menuOption == 8) ;
-                break;
+
+                if (menuOption == 1)
+                {
+                    WebHelper wh = new WebHelper();
+
+                    Console.WriteLine("Poloczono");
+                    continue;
+    
+                }
+                if (menuOption == 2)
+                {
+                    CountHelper ch = new CountHelper();
+                    ch.CountLetters();
+                    continue;
+                                
+                }
+                if (menuOption == 3)
+                {
+                    CountHelper ch = new CountHelper();
+                    ch.CountWords();
+                    continue;
+                }
+                if (menuOption == 4) 
+                {
+                    CountHelper ch = new CountHelper();
+                    ch.CountPunctuationMarks();
+                    continue;
+                }
+                if (menuOption == 5) 
+                {
+                    CountHelper ch = new CountHelper();
+                    ch.CountSentences();
+                    continue;
+                }
+                if (menuOption == 6)
+                {
+                    RaportHelper rh = new RaportHelper();
+                    rh.GenerateReport();
+                    continue;
+                }
+                if (menuOption == 7)
+                {
+                    RaportHelper rh = new RaportHelper();
+                    rh.SaveStatistics();
+                    continue;
+                }
+                if (menuOption == 8)
+                    break;
+                
             }
         }
     }

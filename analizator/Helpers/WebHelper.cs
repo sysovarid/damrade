@@ -11,27 +11,27 @@ namespace analizator.Helpers
      */
     public class WebHelper
     {
-        private string connectionPath { get; set; }
+        public string connectionPath { get; set; }
 
-        private WebClient client { get; set; }
+        public WebClient client { get; set; }
 
         public WebHelper()
         {
-            connectionPath = ConfigurationManager.AppSettings["address"];
-            client = new WebClient();
+            connectionPath = "https://s3.zylowski.net/public/input/6.txt";
+                client = new WebClient();
             GetAllContentToList();
         }
-
-        private void GetAllContentToList()
+        
+        public void GetAllContentToList()
         {
             try
             {
-               WorkSpaceItemCollection.WebsiteContent = Client.DownloadString(ConnectionPath);
+               WorkSpaceItemCollection.WebsiteContent = client.DownloadString(connectionPath);
             }
 
             catch (WebException e)
             {
-                throw new  Exception ($"Somethink went wrong! Message: {e.Message}");
+                throw new  Exception ($"Something went wrong! Message: {e.Message}");
             }
 
         }

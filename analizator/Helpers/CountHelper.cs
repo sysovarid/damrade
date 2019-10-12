@@ -11,20 +11,17 @@ namespace analizator.Helpers
         public CountHelper()
         {
             content = WorkSpaceItemCollection.WebsiteContent;
-            CountLetters();
-            CountWords();
-            CountPunctuationMarks();
-            CountSentences();
+            
         }
 
         #region Count Methods
-        private void CountLetters()
+        public void CountLetters()
         {
             //Student A
             // WorkSpaceItemCollection.CountLetters
         }
 
-        private void CountWords()
+        public void CountWords()
         {
             WorkSpaceItemCollection.CountWords = content.Count(char.IsWhiteSpace) + 1;
             /* This can be copy to main
@@ -34,7 +31,7 @@ namespace analizator.Helpers
             */
         }
 
-        private void CountPunctuationMarks()
+        public void CountPunctuationMarks()
         {
 
             //Student C
@@ -54,7 +51,7 @@ namespace analizator.Helpers
             // WorkSpaceItemCollection.CountPunctuationMarks
         }
 
-        private void CountSentences()
+        public void CountSentences()
         {
             // Student C
 
