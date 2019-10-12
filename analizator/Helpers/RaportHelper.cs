@@ -5,11 +5,11 @@ using System.IO;
 namespace analizator.Helpers
 {
     public class RaportHelper
-    {      
+    {
 
         public void GenerateReport()
         {
-            foreach (char ch in WorkSpaceItemCollection.WebsiteContent.ToUpper())
+            foreach (char ch in WorkSpaceItemCollection.WebsiteContent)
             {
                 if (Char.IsLetter(ch))
                 {
@@ -30,8 +30,18 @@ namespace analizator.Helpers
                 streamWriter.WriteLine($" Liczba wyrazów: {WorkSpaceItemCollection.CountWords}");
                 streamWriter.WriteLine($" Liczba znaków: {WorkSpaceItemCollection.CountPunctuationMarks}");
                 streamWriter.WriteLine($" Liczba zdań: {WorkSpaceItemCollection.CountSentences}");
+
+                foreach (var item in WorkSpaceItemCollection.volwes)
+                {
+                    streamWriter.WriteLine($"Samogłoska {item.Key} = {item.Value}");
+                }
+
+                foreach (var item in WorkSpaceItemCollection.consonant)
+                {
+                    streamWriter.WriteLine($"Spółgłoska {item.Key} = {item.Value}");
+                }
             }
-                 
+
         }
 
         public void DeleteStatistics()

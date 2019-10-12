@@ -98,9 +98,34 @@ namespace analizator
                             Console.Clear();
                             raportHelper.GenerateReport();
 
+
                             foreach (var item in WorkSpaceItemCollection.Chars.OrderBy(x => x.Key))
                             {
-                                Console.WriteLine($"{item.Key} : {item.Value}");
+                                if (item.Key == 'A' || item.Key == 'E' || item.Key == 'Y' || item.Key == 'I' || item.Key == 'O'
+                                    || item.Key == 'Ą' || item.Key == 'Ę' || item.Key == 'U' || item.Key == 'Ó')
+                                {
+                                    WorkSpaceItemCollection.volwes.Add(item.Key, item.Value);
+                                }
+                                else
+                                {
+                                    WorkSpaceItemCollection.consonant.Add(item.Key, item.Value);
+                                }
+
+                            }
+
+                     
+
+                            Console.WriteLine("Samogłoski: \n");
+
+                            foreach (var i in WorkSpaceItemCollection.volwes)
+                            {
+                                Console.WriteLine($"{i.Key} : {i.Value}");
+                            }
+
+                            Console.WriteLine("Spółgłoski: \n");
+                            foreach (var i in WorkSpaceItemCollection.consonant)
+                            {
+                                Console.WriteLine($"{i.Key} : {i.Value}");
                             }
 
                             break;
@@ -126,7 +151,7 @@ namespace analizator
                             Console.WriteLine("Nie ma takiej opcji");
                             break;
                         }
-                }                
+                }
             }
         }
     }

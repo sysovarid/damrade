@@ -27,7 +27,7 @@ namespace analizator.Helpers
         {
             try
             {
-               WorkSpaceItemCollection.WebsiteContent = client.DownloadString(connectionPath);
+               WorkSpaceItemCollection.WebsiteContent = client.DownloadString(connectionPath).ToUpper();
             }
 
             catch (WebException e)
