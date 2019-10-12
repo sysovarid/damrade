@@ -9,7 +9,7 @@ namespace analizator.Helpers
 
         public void GenerateReport()
         {
-            foreach (char ch in WorkSpaceItemCollection.WebsiteContent.ToUpper())
+            foreach (char ch in WorkSpaceItemCollection.WebsiteContent)
             {
                 if (Char.IsLetter(ch))
                 {
