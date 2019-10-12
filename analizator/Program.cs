@@ -1,4 +1,5 @@
 ﻿using analizator.Helpers;
+using analizator.WorkSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace analizator
     {
         static void Main(string[] args)
         {
+            WebHelper wh = new WebHelper();
+            CountHelper ch = new CountHelper();
+
             while (true)
             {
                 Console.WriteLine("1. Pobierz plik z internetu");
@@ -25,35 +29,38 @@ namespace analizator
 
                 if (menuOption == 1)
                 {
-                    WebHelper wh = new WebHelper();
-
-                    Console.WriteLine("Poloczono");
-                    continue;
-    
+                    if (WorkSpaceItemCollection.WebsiteContent != null)
+                    {
+                        Console.WriteLine("Połączono");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Błąd w połączeniu");
+                    }
+                    continue;   
                 }
                 if (menuOption == 2)
-                {
-                    CountHelper ch = new CountHelper();
+                {                 
                     ch.CountLetters();
-                    continue;
-                                
+                    Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters}");
+                    continue;                              
                 }
                 if (menuOption == 3)
-                {
-                    CountHelper ch = new CountHelper();
+                {              
                     ch.CountWords();
+                    Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}");
                     continue;
                 }
                 if (menuOption == 4) 
                 {
-                    CountHelper ch = new CountHelper();
                     ch.CountPunctuationMarks();
+                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}");
                     continue;
                 }
                 if (menuOption == 5) 
-                {
-                    CountHelper ch = new CountHelper();
+                {               
                     ch.CountSentences();
+                    Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}");
                     continue;
                 }
                 if (menuOption == 6)

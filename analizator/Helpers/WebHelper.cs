@@ -18,11 +18,11 @@ namespace analizator.Helpers
         public WebHelper()
         {
             connectionPath = "https://s3.zylowski.net/public/input/6.txt";
-                client = new WebClient();
+            client = new WebClient();
             GetAllContentToList();
         }
         
-        public void GetAllContentToList()
+        private void GetAllContentToList()
         {
             try
             {

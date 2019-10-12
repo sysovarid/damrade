@@ -24,11 +24,6 @@ namespace analizator.Helpers
         public void CountWords()
         {
             WorkSpaceItemCollection.CountWords = content.Count(char.IsWhiteSpace) + 1;
-            /* This can be copy to main
-             * Console.ForegroundColor = ConsoleColor.Green;
-               Console.WriteLine($"{Environment.NewLine}This story has {WorkSpaceItemCollection.CountWords} words!");
-               Console.ForegroundColor = ConsoleColor.White;
-            */
         }
 
         public void CountPunctuationMarks()
@@ -46,9 +41,10 @@ namespace analizator.Helpers
             }
         }
 
-            Console.WriteLine("Number of punctuation marks: " + count);
-               
-            // WorkSpaceItemCollection.CountPunctuationMarks
+
+            //Console.WriteLine("Number of punctuation marks: " + count);
+
+            WorkSpaceItemCollection.CountPunctuationMarks = count;
         }
 
         public void CountSentences()
@@ -57,9 +53,9 @@ namespace analizator.Helpers
 
             string[] sentences = content.Split('.');
 
-            Console.WriteLine("Number of sentences: " + sentences.Length);
+            //Console.WriteLine("Number of sentences: " + sentences.Length);
 
-            //WorkSpaceItemCollection.CountSentences
+            WorkSpaceItemCollection.CountSentences = sentences.Length;
         }
         #endregion
     }
