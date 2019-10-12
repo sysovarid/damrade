@@ -18,7 +18,7 @@ namespace analizator.Helpers
         public void CountLetters()
         {
             //Student A
-            // WorkSpaceItemCollection.CountLetters
+            WorkSpaceItemCollection.CountLetters = content.Count(char.IsLetter);
         }
 
         public void CountWords()
