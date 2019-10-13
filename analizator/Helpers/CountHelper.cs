@@ -12,16 +12,20 @@ namespace analizator.Helpers
         {
             content = WorkSpaceItemCollection.WebsiteContent;
 
+            CountLetters();
+            CountWords();
+            CountSentences();
+            CountPunctuationMarks();
+            CountVolvesConsoant();
         }
 
         #region Count Methods
-        public void CountLetters()
+        private void CountLetters()
         {
-            //Student A
             WorkSpaceItemCollection.CountLetters = content.Count(char.IsLetter);
         }
 
-        public void CountWords()
+        private void CountWords()
         {
             string[] words = content.Split(' ');
 
@@ -38,11 +42,8 @@ namespace analizator.Helpers
             WorkSpaceItemCollection.CountWords = counter;
         }
 
-        public void CountPunctuationMarks()
+        private void CountPunctuationMarks()
         {
-
-            //Student C
-
             int count = 0;
             foreach (char c in content)
             {
@@ -52,21 +53,30 @@ namespace analizator.Helpers
                 }
             }
 
-
-            //Console.WriteLine("Number of punctuation marks: " + count);
-
             WorkSpaceItemCollection.CountPunctuationMarks = count;
         }
 
-        public void CountSentences()
+        private void CountSentences()
         {
-            // Student C
-
             string[] sentences = content.Split('.');
-
-            //Console.WriteLine("Number of sentences: " + sentences.Length);
-
             WorkSpaceItemCollection.CountSentences = sentences.Length;
+        }
+
+        private void CountVolvesConsoant()
+        {
+            foreach (var item in WorkSpaceItemCollection.Chars.OrderBy(x => x.Key))
+            {
+                if (item.Key == 'A' || item.Key == 'E' || item.Key == 'Y' || item.Key == 'I' || item.Key == 'O'
+                    || item.Key == 'Ą' || item.Key == 'Ę' || item.Key == 'U' || item.Key == 'Ó')
+                {
+                    WorkSpaceItemCollection.VolwesCharts.Add(item.Key, item.Value);
+                }
+                else
+                {
+                    WorkSpaceItemCollection.ConsonantCharts.Add(item.Key, item.Value);
+                }
+
+            }
         }
         #endregion
     }

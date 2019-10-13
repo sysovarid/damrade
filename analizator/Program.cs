@@ -13,7 +13,6 @@ namespace analizator
         static void Main(string[] args)
         {
             WebHelper webHelper = new WebHelper();
-            CountHelper countHelper = new CountHelper();
             RaportHelper raportHelper = new RaportHelper();
 
             while (true)
@@ -33,35 +32,64 @@ namespace analizator
                 {
                     case "1":
                         {
+                            if (WorkSpaceItemCollection.WebsiteContent != null)
+                            {
+
+                            }
                             Console.Clear();
                             Console.WriteLine("Czy pobrać plik z internetu?[T/N]");
-                            string result = Console.ReadLine();
-                            if (result.Equals("T", StringComparison.OrdinalIgnoreCase) || result.Equals("t", StringComparison.OrdinalIgnoreCase))
-                            {
-                                webHelper.connectionPath = Console.ReadLine();
-                                webHelper.GetAllContentToList();
-                            
-                            }
-                            else if (result.Equals("N", StringComparison.OrdinalIgnoreCase) || result.Equals("n", StringComparison.OrdinalIgnoreCase))
-                            {
-                                Console.WriteLine("Podaj nazwę pliku.txt");
-                                webHelper.connectionPath = Console.ReadLine();
+                            string result = Console.ReadLine().ToUpper();
 
-                                webHelper.GetAllContentFromLocal();
-                            }
-                            else
+                            switch (result)
                             {
-                                Console.WriteLine("Brak wyboru");
-                            }
+                                case "T":
+                                    {
+                                        Console.WriteLine("Podaj ścieżkę");
+                                        webHelper.connectionPath = Console.ReadLine();
+                                        webHelper.GetAllContentToList();
 
+                                        if(webHelper.IsValidPath)
+                                        {
+                                             CountHelper countHelper = new CountHelper();
+                                        }
+
+                                        break;
+                                    }
+
+                                case "N":
+                                    {
+                                        Console.WriteLine("Podaj nazwę pliku.txt");
+                                        webHelper.connectionPath = Console.ReadLine();
+                                        webHelper.GetAllContentFromLocal();
+
+                                        if (webHelper.IsValidPath)
+                                        {
+                                            CountHelper countHelper = new CountHelper();
+                                        }
+
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("Nie wybrałeś poprawnie");
+                                        break;
+                                    }
+                            }
                             break;
                         }
 
                     case "2":
                         {
                             Console.Clear();
-                            countHelper.CountLetters();
-                            Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters} {Environment.NewLine}");
+
+                            if (WorkSpaceItemCollection.CountSentences != 0)
+                            {
+                                 Console.WriteLine($"Ilość liter w tekście: {WorkSpaceItemCollection.CountLetters} {Environment.NewLine}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nie załadowałeś pliku lub plik nie posiada wartości szukanej!..");
+                            }
 
                             break;
                         }
@@ -69,8 +97,14 @@ namespace analizator
                     case "3":
                         {
                             Console.Clear();
-                            countHelper.CountWords();
-                            Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}{Environment.NewLine}");
+                            if (WorkSpaceItemCollection.CountWords != 0)
+                            {
+                                Console.WriteLine($"Ilość słów w tekście: {WorkSpaceItemCollection.CountWords}{Environment.NewLine}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nie załadowałeś pliku lub plik nie posiada wartości szukanej!..");
+                            }
 
                             break;
                         }
@@ -78,8 +112,15 @@ namespace analizator
                     case "4":
                         {
                             Console.Clear();
-                            countHelper.CountPunctuationMarks();
-                            Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}{Environment.NewLine}");
+
+                            if (WorkSpaceItemCollection.CountPunctuationMarks != 0)
+                            {
+                                Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountPunctuationMarks}{Environment.NewLine}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nie załadowałeś pliku!...");
+                            }
 
                             break;
                         }
@@ -87,8 +128,15 @@ namespace analizator
                     case "5":
                         {
                             Console.Clear();
-                            countHelper.CountSentences();
-                            Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}{Environment.NewLine}");
+
+                            if (WorkSpaceItemCollection.CountSentences != 0)
+                            {
+                                Console.WriteLine($"Ilość znaków w tekście: {WorkSpaceItemCollection.CountSentences}{Environment.NewLine}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nie załadowałeś pliku lub plik nie posiada wartości szukanej!..");
+                            }
 
                             break;
                         }
@@ -96,51 +144,41 @@ namespace analizator
                     case "6":
                         {
                             Console.Clear();
-                            raportHelper.GenerateReport();
 
-
-                            foreach (var item in WorkSpaceItemCollection.Chars.OrderBy(x => x.Key))
+                            if (WorkSpaceItemCollection.WebsiteContent != null)
                             {
-                                if (item.Key == 'A' || item.Key == 'E' || item.Key == 'Y' || item.Key == 'I' || item.Key == 'O'
-                                    || item.Key == 'Ą' || item.Key == 'Ę' || item.Key == 'U' || item.Key == 'Ó')
-                                {
-                                    WorkSpaceItemCollection.volwes.Add(item.Key, item.Value);
-                                }
-                                else
-                                {
-                                    WorkSpaceItemCollection.consonant.Add(item.Key, item.Value);
-                                }
-
+                                raportHelper.GenerateReport();
+                             
                             }
-
-                     
-
-                            Console.WriteLine("Samogłoski: \n");
-
-                            foreach (var i in WorkSpaceItemCollection.volwes)
+                            else
                             {
-                                Console.WriteLine($"{i.Key} : {i.Value}");
+                                Console.WriteLine("Nie załadowałeś pliku lub plik nie posiada wartości szukanej!..");
                             }
-
-                            Console.WriteLine("Spółgłoski: \n");
-                            foreach (var i in WorkSpaceItemCollection.consonant)
-                            {
-                                Console.WriteLine($"{i.Key} : {i.Value}");
-                            }
-
+                            
                             break;
                         }
 
                     case "7":
                         {
-                            raportHelper.SaveStatistics();
+                            Console.Clear();
 
+                            if (WorkSpaceItemCollection.WebsiteContent != null)
+                            {
+                                raportHelper.SaveStatistics();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nie załadowałeś pliku lub plik nie posiada wartości szukanej!..");
+                            }
                             break;
                         }
 
                     case "8":
                         {
-                            raportHelper.DeleteStatistics();
+                            if(WorkSpaceItemCollection.WebsiteContent != null)
+                            {
+                                raportHelper.DeleteStatistics();
+                            }
 
                             return;
                         }
