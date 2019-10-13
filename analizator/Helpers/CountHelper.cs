@@ -59,7 +59,8 @@ namespace analizator.Helpers
         private void CountSentences()
         {
             string[] sentences = content.Split('.');
-            WorkSpaceItemCollection.CountSentences = sentences.Length;
+            string[] sentences2 = content.Split('?');
+            WorkSpaceItemCollection.CountSentences = sentences.Length + sentences2.Length;
         }
 
         private void CountVolvesConsoant()
